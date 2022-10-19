@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Tocatu_v2.Context;
+using Tocatu_v2.Models;
 
 namespace Tocatu_v2
 {
@@ -14,6 +16,8 @@ namespace Tocatu_v2
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
+
+           
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

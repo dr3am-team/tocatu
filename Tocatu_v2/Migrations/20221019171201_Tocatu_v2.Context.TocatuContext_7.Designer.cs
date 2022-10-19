@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tocatu_v2.Context;
 
 namespace Tocatu_v2.Migrations
 {
     [DbContext(typeof(TocatuContext))]
-    partial class TocatuContextModelSnapshot : ModelSnapshot
+    [Migration("20221019171201_Tocatu_v2.Context.TocatuContext_7")]
+    partial class Tocatu_v2ContextTocatuContext_7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

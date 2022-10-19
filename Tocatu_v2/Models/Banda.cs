@@ -2,6 +2,6 @@
 {
     public class Banda: Usuario
     {
-        public string Nombre { get; set; }
+        public string Estilo { get; set; }
     }
 }
