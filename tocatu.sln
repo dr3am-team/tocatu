@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tocatu_v2", "Tocatu_v2\Tocatu_v2.csproj", "{A9B8E36A-4F45-4962-8A13-E0E968EED6C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tocatu", "tocatu\tocatu.csproj", "{A9B8E36A-4F45-4962-8A13-E0E968EED6C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
