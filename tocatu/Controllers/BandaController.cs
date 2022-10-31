@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Tocatu_v2.Context;
-using Tocatu_v2.Models;
+using tocatu.Context;
+using tocatu.Models;
 
-namespace Tocatu_v2.Controllers
+namespace tocatu.Controllers
 {
     public class BandaController : Controller
     {

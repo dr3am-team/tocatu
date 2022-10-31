@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Tocatu_v2.Models;
+using tocatu.Models;
 
-namespace Tocatu_v2.Context
+namespace tocatu.Context
 {
     public class TocatuContext : DbContext
     {

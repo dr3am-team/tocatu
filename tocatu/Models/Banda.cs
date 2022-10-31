@@ -1,4 +1,4 @@
-﻿namespace Tocatu_v2.Models
+﻿namespace tocatu.Models
 {
     public class Banda: Usuario
     {

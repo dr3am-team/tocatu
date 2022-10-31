@@ -6,10 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Tocatu_v2.Context;
-using Tocatu_v2.Models;
+using tocatu.Context;
+using tocatu.Models;
 
-namespace Tocatu_v2
+namespace tocatu
 {
     public class Program
     {

@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Tocatu_v2.Models;
+using tocatu.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Tocatu_v2.Controllers
+namespace tocatu.Controllers
 {
     public class HomeController : Controller
     {

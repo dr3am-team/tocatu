@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Tocatu_v2.Models
+namespace tocatu.Models
 {
     public class Usuario
     {
