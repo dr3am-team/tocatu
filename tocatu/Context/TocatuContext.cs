@@ -17,6 +17,7 @@ namespace tocatu.Context
         public DbSet<Evento> Eventos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Banda> Bandas { get; set; }
+        public DbSet<tocatu.Models.Bar> Bar { get; set; }
 
 
     }
