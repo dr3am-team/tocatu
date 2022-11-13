@@ -46,6 +46,7 @@ namespace tocatu.Controllers
         // GET: Evento/Create
         public IActionResult Create()
         {
+            ObtenerListaDeBares();
             return View();
         }
 
@@ -148,6 +149,18 @@ namespace tocatu.Controllers
         private bool EventoExists(int id)
         {
             return _context.Eventos.Any(e => e.EventId == id);
+        }
+
+       /* private void PopulateBaresDropDownList(int? selectedBar = null)
+        {
+            var bares = _context.PopulateBaresDropDownList();
+            ViewBag.UserId = new SelectList(bares.AsNoTracking(), "UserId", "UserNombre", selectedBar);
+        }*/
+       public void ObtenerListaDeBares()
+        {
+            var bandas = _context.Bandas;
+         
+            ViewBag.Banda = new SelectList(bandas);
         }
     }
 }
