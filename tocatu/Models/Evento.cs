@@ -19,6 +19,9 @@ namespace tocatu.Models
         public string Hora { get; set; }
         public int Capacidad { get; set; }
         public string Direccion { get; set; }
-        public int BandaId { get; set; }
+        public int BarId { get; set; }
+
+
+
     }
 }

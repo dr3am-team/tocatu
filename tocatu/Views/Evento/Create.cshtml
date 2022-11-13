@@ -14,8 +14,19 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-           
-           
+
+
+
+            <div class="form-group">
+                <label asp-for="BarId" class="control-label">Eliga el nombre de una bar</label>
+                <select asp-for="BarId" asp-items="ViewBag.Banda">
+                    <option selected="selected" value="ViewBag.Banda">Select</option>
+                </select>
+                <span asp-validation-for="BarId" class="text-danger"></span>
+            </div>
+
+
+
             <div class="form-group">
                 <label asp-for="Nombre" class="control-label"></label>
                 <input asp-for="Nombre" class="form-control" />
@@ -51,11 +62,11 @@
                 <input asp-for="Direccion" class="form-control" />
                 <span asp-validation-for="Direccion" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="BandaId" class="control-label"></label>
                 <input asp-for="BandaId" class="form-control" />
                 <span asp-validation-for="BandaId" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -68,5 +79,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

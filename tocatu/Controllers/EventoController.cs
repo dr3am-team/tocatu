@@ -46,7 +46,7 @@ namespace tocatu.Controllers
         // GET: Evento/Create
         public IActionResult Create()
         {
-            ObtenerListaDeBares();
+            ObtenerListaDeBandas();
             return View();
         }
 
@@ -65,6 +65,8 @@ namespace tocatu.Controllers
             }
             return View(evento);
         }
+
+
 
         // GET: Evento/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -156,11 +158,17 @@ namespace tocatu.Controllers
             var bares = _context.PopulateBaresDropDownList();
             ViewBag.UserId = new SelectList(bares.AsNoTracking(), "UserId", "UserNombre", selectedBar);
         }*/
-       public void ObtenerListaDeBares()
+       public void ObtenerListaDeBandas()
         {
-            var bandas = _context.Bandas;
-         
-            ViewBag.Banda = new SelectList(bandas);
+            var bandass = _context.Usuarios.ToList();
+
+            var BandasId = from usuario in bandass
+                                  where usuario is Bar
+                                     select usuario;
+
+
+            ViewBag.Banda = new SelectList(BandasId, "UserId", "Nombre");
+
         }
     }
 }
