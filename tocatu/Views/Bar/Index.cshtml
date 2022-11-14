@@ -1,4 +1,4 @@
-﻿@*@model IEnumerable<tocatu.Models.Bar>*@
+﻿@model IEnumerable<tocatu.Models.Bar>
 
 @{
     ViewData["Title"] = "Index";
@@ -9,34 +9,10 @@
     <a class="btn btn-primary" asp-area="" asp-controller="Bar" asp-action="Create">Cear Bar</a>
 </div>
 
-@*<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Direccion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Capacidad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NombreUsuario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Apellido)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Mail)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Password)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+<table class="table">
+   <tbody>
+    
+    
 @foreach (var item in Model) {
         <tr>
             <td>
@@ -68,4 +44,4 @@
         </tr>
 }
     </tbody>
-</table>*@
+</table>
