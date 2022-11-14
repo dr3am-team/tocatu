@@ -55,8 +55,17 @@ namespace tocatu.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EventId,Nombre,Descripcion,PrecioEntrada,Dia,Hora,Capacidad,Direccion,BandaId")] Evento evento)
+        public async Task<IActionResult> Create([Bind("EventId,Nombre,Descripcion,PrecioEntrada,Dia,Hora, BarId")] Evento evento)
         {
+            var Bar = from bar in _context.Usuarios
+                      where (bar.UserId == evento.BarId)
+                      select bar;
+            var bar1 = (Bar)Bar.FirstOrDefault();
+            evento.Capacidad = bar1.Capacidad;
+            evento.Direccion = bar1.Direccion;
+
+            
+            
             if (ModelState.IsValid)
             {
                 _context.Add(evento);
@@ -66,6 +75,20 @@ namespace tocatu.Controllers
             return View(evento);
         }
 
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("EventId,Nombre,Descripcion,PrecioEntrada,Dia,Hora,Capacidad,Direccion,BarId")] Evento evento)
+        //{
+
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(evento);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(evento);
+        //}
 
 
         // GET: Evento/Edit/5
@@ -89,7 +112,7 @@ namespace tocatu.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EventId,Nombre,Descripcion,PrecioEntrada,Dia,Hora,Capacidad,Direccion,BandaId")] Evento evento)
+        public async Task<IActionResult> Edit(int id, [Bind("EventId,Nombre,Descripcion,PrecioEntrada,Dia,Hora,Capacidad,Direccion,BarId")] Evento evento)
         {
             if (id != evento.EventId)
             {
@@ -160,14 +183,14 @@ namespace tocatu.Controllers
         }*/
        public void ObtenerListaDeBandas()
         {
-            var bandass = _context.Usuarios.ToList();
+            var Usuarios = _context.Usuarios.ToList();
 
-            var BandasId = from usuario in bandass
-                                  where usuario is Bar
+            var Bares = from usuario in Usuarios
+                        where usuario is Bar
                                      select usuario;
 
 
-            ViewBag.Banda = new SelectList(BandasId, "UserId", "Nombre");
+            ViewBag.Banda = new SelectList(Bares, "UserId", "Nombre");
 
         }
     }

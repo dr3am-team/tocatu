@@ -21,6 +21,8 @@ namespace tocatu.Models
         public string Direccion { get; set; }
         public int BarId { get; set; }
 
+        public int BandaId { get; set; }
+
 
 
     }
