@@ -10,7 +10,7 @@
 *.userosscache
 *.sln.docstates
 appsettings.json
-./tocatu/Migrations
+tocatu/Migrations
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
