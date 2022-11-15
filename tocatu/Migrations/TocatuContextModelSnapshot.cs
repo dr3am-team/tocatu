@@ -44,6 +44,9 @@ namespace tocatu.Migrations
                     b.Property<string>("Direccion")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Hora")
                         .HasColumnType("nvarchar(max)");
 

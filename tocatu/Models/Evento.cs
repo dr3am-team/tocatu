@@ -16,6 +16,7 @@ namespace tocatu.Models
     public string Descripcion { get; set; }
     public double PrecioEntrada { get; set; }
     public string Dia { get; set; }
+    public DateTime Fecha { get; set; }
     public string Hora { get; set; }
     public int Capacidad { get; set; }
     public string Direccion { get; set; }
