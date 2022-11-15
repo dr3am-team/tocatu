@@ -15,3 +15,8 @@ namespace tocatu.Models
         public string Password { get; set; }
     }
 }
+
+/*
+ * Validar todas como obligatorias y mensaje
+ * https://www.c-sharpcorner.com/article/data-annotations-and-validation-in-mvc/
+ */
