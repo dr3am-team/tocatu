@@ -21,17 +21,15 @@ namespace tocatu.Models
     public string Direccion { get; set; }
     public int? BarId { get; set; }
     public virtual Bar Bar { get; set; }
-    //Objeto Bar
-
     public int? BandaId { get; set; }
     public virtual Banda Banda { get; set; }
-    //Objeto Banda
+
 
     /*
      Validaciones
 
     public int? BakeryId { get; set; }
-        public virtual Bakery Bakery { get; set; }
+public virtual Bakery Bakery { get; set; }
 
 
 

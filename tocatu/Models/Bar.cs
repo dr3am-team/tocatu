@@ -2,12 +2,12 @@
 
 namespace tocatu.Models
 {
-    public class Bar: Usuario
-    {
-        public string Direccion { get; set; }
-        //Obligatorio + msg error
+  public class Bar : Usuario
+  {
+    public string Direccion { get; set; }
+    //Obligatorio + msg error
 
-        public int Capacidad { get; set; }
+    public int Capacidad { get; set; }
     //Obligatorio + msg error + rangos > 0 
     public virtual ICollection<Evento> Eventos { get; set; }
 
