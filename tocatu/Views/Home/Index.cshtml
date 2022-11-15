@@ -1,11 +1,13 @@
-﻿@{
+﻿@model IEnumerable<tocatu.Models.Evento>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div>
     <h1 class="text-center">Eventos</h1>
 
-    <div class="d-flex flex-lg-wrap">
+  @*  <div class="d-flex flex-lg-wrap">
         <div style="width: 300px;" class="border border-secondary rounded   m-2">
             <img style="width: 100%;" class="d-block m-auto"  src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F380073589%2F216685717227%2F1%2Foriginal.20220816-152308?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C70%2C1080%2C540&s=14b966a45fdb6bdff871d4d44d6a1ccf" />
             <div class="p-2">
@@ -16,7 +18,30 @@
             </div>
         </div>
 
+    </div>*@
+
+ @*   display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}*@
+    
+        
+      <div class="d-flex flex-lg-wrap">
+        @foreach (var item in Model)
+    {
+        <div style="width: 300px;" class="border border-secondary rounded   m-2">
+            <img style="width: 100%;" class="d-block m-auto"  src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F380073589%2F216685717227%2F1%2Foriginal.20220816-152308?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C70%2C1080%2C540&s=14b966a45fdb6bdff871d4d44d6a1ccf" />
+            <div class="p-2">
+                <h5 class="mt-1">@Html.DisplayFor(modelItem => item.Descripcion)</h5>
+                <time datetime="2022-10-31"><span>@Html.DisplayFor(modelItem => item.Dia)</span>, <span>@Html.DisplayFor(modelItem => item.Hora)</span> </time>
+                <p><span>@Html.DisplayFor(modelItem => item.BarId)</span> • <span>@Html.DisplayFor(modelItem => item.Direccion)</span></p>
+                <span>$@Html.DisplayFor(modelItem => item.PrecioEntrada)</span>
+            </div>
+        </div>
+        }
     </div>
+
+    
+
 
 </div>
 </div>

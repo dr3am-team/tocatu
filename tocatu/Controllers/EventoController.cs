@@ -25,6 +25,8 @@ namespace tocatu.Controllers
             return View(await _context.Eventos.ToListAsync());
         }
 
+
+
         // GET: Evento/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -190,7 +192,7 @@ namespace tocatu.Controllers
                                      select usuario;
 
 
-            ViewBag.Banda = new SelectList(Bares, "UserId", "Nombre");
+            ViewBag.Bar = new SelectList(Bares, "UserId", "Nombre");
 
         }
     }

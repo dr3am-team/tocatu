@@ -5,14 +5,39 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div>
-    <a class="btn btn-primary" asp-area="" asp-controller="Bar" asp-action="Create">Cear Bar</a>
-</div>
+<h1>Index</h1>
 
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 <table class="table">
-   <tbody>
-    
-    
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Direccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Capacidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
