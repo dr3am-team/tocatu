@@ -153,19 +153,29 @@ namespace tocatu.Controllers
         //}
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EventId,Nombre,Descripcion,PrecioEntrada,Dia,Hora,Capacidad,Direccion,BarId, BandaId")] Evento evento)
+        public async Task<IActionResult> Edit(int id, [Bind("EventId,Nombre,Descripcion,PrecioEntrada,Dia,Hora, BarId, BandaId")] Evento evento)
         {
             if (id != evento.EventId)
             {
                 return NotFound();
             }
-
+            //establezco los datos de la banda en el evento
             var Banda = from banda in _context.Usuarios
                         where (banda.UserId == evento.BandaId)
                         select banda;
             var banda1 = (Banda)Banda.FirstOrDefault();
             evento.NombreBanda = banda1.Nombre;
             evento.EstiloBanda = banda1.Estilo;
+            //establezco los datos del bar en el evento para que no se pierdan al editar
+            var Bar = from bar in _context.Usuarios
+                      where (bar.UserId == evento.BarId)
+                      select bar;
+            
+            var Bar1 = (Bar)Bar.FirstOrDefault();
+            evento.Capacidad = Bar1.Capacidad;
+            evento.Direccion= Bar1.Direccion;
+
+
 
             if (ModelState.IsValid)
             {
@@ -231,6 +241,7 @@ namespace tocatu.Controllers
          }*/
         public void ObtenerListaDeBares()
         {
+            //establecemos los bares en el viewbag para que aparezcan en el desplegable
             var Usuarios = _context.Usuarios.ToList();
 
             var Bares = from usuario in Usuarios
@@ -243,6 +254,7 @@ namespace tocatu.Controllers
         }
         public void ObtenerListaDeBandas()
         {
+            //establecemos los bandas en el viewbag para que aparezcan en el desplegable
             var Usuarios = _context.Usuarios.ToList();
 
             var Bandas = from usuario in Usuarios
@@ -253,5 +265,42 @@ namespace tocatu.Controllers
             ViewBag.Banda = new SelectList(Bandas, "UserId", "Nombre");
 
         }
+        public void ActualizarDatos(int capacidad, string direccion, int id)
+        {
+            //buscar al evento del id
+            var Evento = from evento in _context.Eventos
+                        where (evento.BarId == id)
+                        select evento;
+            foreach (Evento e in Evento)
+            {
+                e.Capacidad = capacidad;
+                e.Direccion = direccion;
+
+            }
+
+
+
+            var Evento1 = Evento.FirstOrDefault();
+            Evento1.Capacidad= capacidad;
+            Evento1.Direccion= direccion;
+        }
+        public void ActualizarDatos(string estilo, string nombre, int id)
+        {
+            //buscar al evento del id
+            var Evento = from evento in _context.Eventos
+                         where (evento.BandaId == id)
+                         select evento;
+
+            foreach(Evento e in Evento)
+            {
+                e.EstiloBanda = estilo;
+                e.NombreBanda = nombre;
+
+            }
+            //var Evento1 = Evento.FirstOrDefault();
+            //Evento1.EstiloBanda = estilo;
+            //Evento1.NombreBanda = nombre;
+        }
+
     }
 }

@@ -92,7 +92,8 @@ namespace tocatu.Controllers
             {
                 return NotFound();
             }
-
+            EventoController e = new EventoController(_context);
+            e.ActualizarDatos(banda.Estilo, banda.Nombre, id);
             if (ModelState.IsValid)
             {
                 try
