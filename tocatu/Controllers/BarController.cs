@@ -93,6 +93,10 @@ namespace tocatu.Controllers
                 return NotFound();
             }
 
+            EventoController e = new EventoController(_context);
+            e.ActualizarDatos(bar.Capacidad, bar.Direccion, id);
+            
+
             if (ModelState.IsValid)
             {
                 try
@@ -115,6 +119,7 @@ namespace tocatu.Controllers
             }
             return View(bar);
         }
+       
 
         // GET: Bar/Delete/5
         public async Task<IActionResult> Delete(int? id)
