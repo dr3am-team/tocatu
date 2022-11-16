@@ -37,42 +37,55 @@
             <th>
                 @Html.DisplayNameFor(model => model.BarId)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreBanda)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstiloBanda)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PrecioEntrada)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Dia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hora)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Capacidad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Direccion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BarId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.EventId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EventId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EventId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrecioEntrada)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hora)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Capacidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Direccion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BarId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreBanda)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstiloBanda)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.EventId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.EventId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.EventId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -44,6 +44,9 @@ namespace tocatu.Migrations
                     b.Property<string>("Direccion")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("EstiloBanda")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
@@ -51,6 +54,9 @@ namespace tocatu.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NombreBanda")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("PrecioEntrada")

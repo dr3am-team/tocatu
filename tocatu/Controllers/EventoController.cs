@@ -48,7 +48,7 @@ namespace tocatu.Controllers
     // GET: Evento/Create
     public IActionResult Create()
     {
-      ObtenerListaDeBandas();
+      ObtenerListaDeBares();
       return View();
     }
 
@@ -108,7 +108,7 @@ namespace tocatu.Controllers
       {
         return NotFound();
       }
-
+            ObtenerListaDeBandas();
       var evento = await _context.Eventos.FindAsync(id);
       if (evento == null)
       {
@@ -117,43 +117,81 @@ namespace tocatu.Controllers
       return View(evento);
     }
 
-    // POST: Evento/Edit/5
-    // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-    // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("EventId,Nombre,Descripcion,PrecioEntrada,Dia,Hora,Capacidad,Direccion,BarId")] Evento evento)
-    {
-      if (id != evento.EventId)
-      {
-        return NotFound();
-      }
+        // POST: Evento/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Edit(int id, [Bind("EventId,Nombre,Descripcion,PrecioEntrada,Dia,Hora,Capacidad,Direccion,BarId")] Evento evento)
+        //{
+        //  if (id != evento.EventId)
+        //  {
+        //    return NotFound();
+        //  }
 
-      if (ModelState.IsValid)
-      {
-        try
+        //  if (ModelState.IsValid)
+        //  {
+        //    try
+        //    {
+        //      _context.Update(evento);
+        //      await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //      if (!EventoExists(evento.EventId))
+        //      {
+        //        return NotFound();
+        //      }
+        //      else
+        //      {
+        //        throw;
+        //      }
+        //    }
+        //    return RedirectToAction(nameof(Index));
+        //  }
+        //  return View(evento);
+        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("EventId,Nombre,Descripcion,PrecioEntrada,Dia,Hora,Capacidad,Direccion,BarId, BandaId")] Evento evento)
         {
-          _context.Update(evento);
-          await _context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-          if (!EventoExists(evento.EventId))
-          {
-            return NotFound();
-          }
-          else
-          {
-            throw;
-          }
-        }
-        return RedirectToAction(nameof(Index));
-      }
-      return View(evento);
-    }
+            if (id != evento.EventId)
+            {
+                return NotFound();
+            }
 
-    // GET: Evento/Delete/5
-    public async Task<IActionResult> Delete(int? id)
+            var Banda = from banda in _context.Usuarios
+                        where (banda.UserId == evento.BandaId)
+                        select banda;
+            var banda1 = (Banda)Banda.FirstOrDefault();
+            evento.NombreBanda = banda1.Nombre;
+            evento.EstiloBanda = banda1.Estilo;
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(evento);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!EventoExists(evento.EventId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(evento);
+        }
+
+        // GET: Evento/Delete/5
+        public async Task<IActionResult> Delete(int? id)
     {
       if (id == null)
       {
@@ -186,22 +224,34 @@ namespace tocatu.Controllers
       return _context.Eventos.Any(e => e.EventId == id);
     }
 
-    /* private void PopulateBaresDropDownList(int? selectedBar = null)
-     {
-         var bares = _context.PopulateBaresDropDownList();
-         ViewBag.UserId = new SelectList(bares.AsNoTracking(), "UserId", "UserNombre", selectedBar);
-     }*/
-    public void ObtenerListaDeBandas()
-    {
-      var Usuarios = _context.Usuarios.ToList();
+        /* private void PopulateBaresDropDownList(int? selectedBar = null)
+         {
+             var bares = _context.PopulateBaresDropDownList();
+             ViewBag.UserId = new SelectList(bares.AsNoTracking(), "UserId", "UserNombre", selectedBar);
+         }*/
+        public void ObtenerListaDeBares()
+        {
+            var Usuarios = _context.Usuarios.ToList();
 
-      var Bares = from usuario in Usuarios
-                  where usuario is Bar
-                  select usuario;
+            var Bares = from usuario in Usuarios
+                        where usuario is Bar
+                        select usuario;
 
 
-      ViewBag.Bar = new SelectList(Bares, "UserId", "Nombre");
+            ViewBag.Bar = new SelectList(Bares, "UserId", "Nombre");
 
+        }
+        public void ObtenerListaDeBandas()
+        {
+            var Usuarios = _context.Usuarios.ToList();
+
+            var Bandas = from usuario in Usuarios
+                         where usuario is Banda
+                         select usuario;
+
+
+            ViewBag.Banda = new SelectList(Bandas, "UserId", "Nombre");
+
+        }
     }
-  }
 }

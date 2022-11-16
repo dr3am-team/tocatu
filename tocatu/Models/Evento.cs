@@ -7,34 +7,35 @@ using System.Threading.Tasks;
 
 namespace tocatu.Models
 {
-  public class Evento
-  {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int EventId { get; set; }
-    public string Nombre { get; set; }
-    public string Descripcion { get; set; }
-    public double PrecioEntrada { get; set; }
-    public string Dia { get; set; }
-    public DateTime Fecha { get; set; }
-    public string Hora { get; set; }
-    public int Capacidad { get; set; }
-    public string Direccion { get; set; }
-    public int? BarId { get; set; }
-    public virtual Bar Bar { get; set; }
-    public int? BandaId { get; set; }
-    public virtual Banda Banda { get; set; }
+    public class Evento
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int EventId { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
+        public double PrecioEntrada { get; set; }
+        public string Dia { get; set; }
+        public DateTime Fecha { get; set; }
+        public string Hora { get; set; }
+        public int Capacidad { get; set; }
+        public string Direccion { get; set; }
+        public int? BarId { get; set; }
+        public virtual Bar Bar { get; set; }
+        public int? BandaId { get; set; }
+        public virtual Banda Banda { get; set; }
+
+        public string NombreBanda { get; set; }
+        public string EstiloBanda { get; set; }
+        /*
+         Validaciones
+
+        public int? BakeryId { get; set; }
+    public virtual Bakery Bakery { get; set; }
 
 
-    /*
-     Validaciones
 
-    public int? BakeryId { get; set; }
-public virtual Bakery Bakery { get; set; }
+         */
 
-
-
-     */
-
-  }
+    }
 }
