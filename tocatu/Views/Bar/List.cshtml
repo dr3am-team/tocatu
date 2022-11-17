@@ -5,23 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Bares</h1>
-<hr/>
-<div style="display: flex; gap:10px; justify-content: center;">
-    <div style=" padding:20px; width: 300px; box-shadow:1px 1px 10px #ccc"  >
-        <a asp-action="Create" style="display: block; text-align: center; cursor:pointer; text-decoration: none;" >Crear nuevo <strong>Bar</strong></a>
-    </div>
 
-    <div style="padding:20px; width: 300px; box-shadow:1px 1px 10px #ccc"  >
-        <a asp-action="List" style="display: block; text-align: center; cursor:pointer; text-decoration: none;" >Ver bares creados</a>
-    </div>
-
-</div>
-
-@*<p>
-    <a asp-action="Create">Create New</a>
-</p>*@
-@*<table class="table">
+<table class="table">
     <thead>
         <tr>
             <th>
@@ -73,11 +58,11 @@
                 @Html.DisplayFor(modelItem => item.Password)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.UserId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.UserId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.UserId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.UserId">Editar</a> |
+                @*<a asp-action="Details" asp-route-id="@item.UserId">Ver</a> |*@
+                <a asp-action="Delete" asp-route-id="@item.UserId">Borrar</a>
             </td>
         </tr>
 }
     </tbody>
-</table>*@
+</table>

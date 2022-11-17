@@ -302,5 +302,22 @@ namespace tocatu.Controllers
             //Evento1.NombreBanda = nombre;
         }
 
+
+    public void ActualizarReferenciaEvento(int id)
+    {
+      //buscar al evento del id
+      var Evento = from evento in _context.Eventos
+                   where (evento.BarId == id)
+                   select evento;
+      foreach (Evento e in Evento)
+      {
+        e.BarId = null;
+
+      }
+
+
+
     }
+
+  }
 }

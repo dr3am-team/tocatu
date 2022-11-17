@@ -81,9 +81,10 @@
                     @Html.DisplayFor(modelItem => item.EstiloBanda)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.EventId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.EventId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.EventId">Delete</a>
+
+                    <a asp-action="Edit" asp-route-id="@item.EventId">Editar</a>
+                    @*<a asp-action="Details" asp-route-id="@item.UserId">Ver</a> |*@
+                    <a asp-action="Delete" asp-route-id="@item.EventId">Borrar</a>
                 </td>
             </tr>
         }

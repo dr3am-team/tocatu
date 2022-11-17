@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<h1>Crear Bar</h1>
 
 <h4>Bar</h4>
 <hr />
@@ -13,6 +13,16 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NombreUsuario" class="control-label">Usuario</label>
+                <input asp-for="NombreUsuario" class="form-control" />
+                <span asp-validation-for="NombreUsuario" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="Nombre" class="control-label">Nombre de Bar</label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Direccion" class="control-label"></label>
                 <input asp-for="Direccion" class="form-control" />
@@ -23,16 +33,8 @@
                 <input asp-for="Capacidad" class="form-control" />
                 <span asp-validation-for="Capacidad" class="text-danger"></span>
             </div>*
-            <div class="form-group">
-                <label asp-for="NombreUsuario" class="control-label"></label>
-                <input asp-for="NombreUsuario" class="form-control" />
-                <span asp-validation-for="NombreUsuario" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
-                <input asp-for="Nombre" class="form-control" />
-                <span asp-validation-for="Nombre" class="text-danger"></span>
-            </div>
+            
+           
             <div class="form-group">
                 <label asp-for="Apellido" class="control-label"></label>
                 <input asp-for="Apellido" class="form-control" />
