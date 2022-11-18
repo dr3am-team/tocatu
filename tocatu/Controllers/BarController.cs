@@ -145,6 +145,9 @@ namespace tocatu.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var bar = await _context.Bar.FindAsync(id);
+            //Llamamos a un metodo el cual borra los eventos asociados ya que sin bar no hay evento...
+            EventoController e = new EventoController(_context);
+            e.BorrarEventosAsociados(id);
             _context.Bar.Remove(bar);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

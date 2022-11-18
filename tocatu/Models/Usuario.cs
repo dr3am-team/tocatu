@@ -8,10 +8,18 @@ namespace tocatu.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
+
+
+        [Required(ErrorMessage = "Debe ingresar un nombre de usuario")]
         public string NombreUsuario { get; set; }
+        [Required(ErrorMessage = "Debe ingresar un nombre")]
         public string Nombre { get; set; }
+        [Required(ErrorMessage = "Debe ingresar un apellido")]
         public string Apellido { get; set; }
+        [Required(ErrorMessage = "Debe ingresar un mail valido")]
+        [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$")]
         public string Mail { get; set; }
+        [Required(ErrorMessage = "Debe ingresar una contraseña")]
         public string Password { get; set; }
     }
 }
