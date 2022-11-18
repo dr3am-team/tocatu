@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<h1>Crear Evento</h1>
 
 <h4>Evento</h4>
 <hr />
@@ -18,9 +18,9 @@
 
 
             <div class="form-group">
-                <label asp-for="BarId" class="control-label">Eliga el nombre de un bar</label>
+                <label asp-for="BarId" class="control-label">Seleccione el nombre de un bar</label>
                 <select asp-for="BarId" asp-items="ViewBag.Bar">
-                    <option selected="selected" value="ViewBag.Bar">Select</option>
+                    <option selected="selected" disabled value="ViewBag.Bar">Seleccionar</option>
                 </select>
                 <span asp-validation-for="BarId" class="text-danger"></span>
             </div>

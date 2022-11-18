@@ -25,6 +25,10 @@ namespace tocatu.Controllers
       return View(await _context.Eventos.ToListAsync());
     }
 
+    public async Task<IActionResult> List()
+    {
+      return View(await _context.Eventos.ToListAsync());
+    }
 
 
     // GET: Evento/Details/5
@@ -341,4 +345,6 @@ namespace tocatu.Controllers
             }
         }
     }
+
+  }
 }
