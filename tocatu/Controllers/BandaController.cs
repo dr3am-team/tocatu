@@ -141,6 +141,12 @@ namespace tocatu.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var banda = await _context.Bandas.FindAsync(id);
+            //establecemos el valor de BarId del evento en null, ya que sino al borrar el bar se rompe la bd porque el evento esta vinculado al id de bar
+            //falta hace que los datos de la banda en el evento vuelvan a estar vacios
+            EventoController e = new EventoController(_context);
+            e.BorrarIdBanda(id);
+            e.EstablecerDatosDeBandaVacios(id);
+
             _context.Bandas.Remove(banda);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
