@@ -6,78 +6,15 @@
 }
 
 <h1>Bares</h1>
-<hr/>
-<div style="display: flex; gap:10px; justify-content: center;">
-    <div style=" padding:20px; width: 300px; box-shadow:1px 1px 10px #ccc"  >
-        <a asp-action="Create" style="display: block; text-align: center; cursor:pointer; text-decoration: none;" >Crear nuevo <strong>Bar</strong></a>
+<hr />
+<div class="idx_button-container">
+    <div class="idx_button">
+        <a asp-action="Create">Crear nuevo <strong>Bar</strong></a>
     </div>
 
-    <div style="padding:20px; width: 300px; box-shadow:1px 1px 10px #ccc"  >
-        <a asp-action="List" style="display: block; text-align: center; cursor:pointer; text-decoration: none;" >Ver bares creados</a>
+    <div class="idx_button">
+        <a asp-action="List">Ver bares creados</a>
     </div>
 
 </div>
 
-@*<p>
-    <a asp-action="Create">Create New</a>
-</p>*@
-@*<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Direccion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Capacidad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NombreUsuario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Apellido)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Mail)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Password)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Direccion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Capacidad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NombreUsuario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Apellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.UserId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.UserId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.UserId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>*@
