@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using tocatu.Context;
 using tocatu.Models;
 
@@ -13,13 +17,15 @@ namespace tocatu.Controllers
   public class EventoController : Controller
   {
     private readonly TocatuContext _context;
+        private IWebHostEnvironment _environment;
 
-    public EventoController(TocatuContext context)
-    {
-      _context = context;
-    }
+        public EventoController(TocatuContext context, IWebHostEnvironment enviroment)
+        {
+         _context = context;
+         _environment = enviroment;
+        }
 
-    public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index()
     {
       return View();
     }
@@ -68,10 +74,19 @@ namespace tocatu.Controllers
       DateTime _fecha = new DateTime(int.Parse(fecha[0]), int.Parse(fecha[1]), int.Parse(fecha[2]));
       evento.Fecha = _fecha;
 
+            if (evento.PhotoAvatar != null && evento.PhotoAvatar.Length > 0)
+            {
+                evento.ImageMimeType = evento.PhotoAvatar.ContentType;
+                evento.ImageName = Path.GetFileName(evento.PhotoAvatar.FileName);
+                using (var memoryStream = new MemoryStream())
+                {
+                    evento.PhotoAvatar.CopyTo(memoryStream);
+                    evento.PhotoFile = memoryStream.ToArray();
+                }
+            }
 
 
-
-      var Bar = from bar in _context.Usuarios
+            var Bar = from bar in _context.Usuarios
                 where (bar.UserId == evento.BarId)
                 select bar;
       var bar1 = (Bar)Bar.FirstOrDefault();
@@ -88,25 +103,68 @@ namespace tocatu.Controllers
       }
       return View(evento);
     }
+        [ActionName("GetImage")]
+        public IActionResult GetImage(int id)
+        {
+            Evento evento = GetEventoById(id);
 
-    //[HttpPost]
-    //[ValidateAntiForgeryToken]
-    //public async Task<IActionResult> Create([Bind("EventId,Nombre,Descripcion,PrecioEntrada,Dia,Hora,Capacidad,Direccion,BarId")] Evento evento)
-    //{
+            if (evento != null)
+            {
+                string webRootpath = _environment.WebRootPath;
+                string folderPath = "\\images\\";
+                string fullPath = webRootpath + folderPath + evento.ImageName;
+                if (System.IO.File.Exists(fullPath))
+                {
+                    FileStream fileOnDisk = new FileStream(fullPath, FileMode.Open);
+                    byte[] fileBytes;
+                    using (BinaryReader br = new BinaryReader(fileOnDisk))
+                    {
+                        fileBytes = br.ReadBytes((int)fileOnDisk.Length);
+                    }
+                    return File(fileBytes, evento.ImageMimeType);
+                }
+                else
+                {
+                    if (evento.PhotoFile.Length > 0)
+                    {
+                        return File(evento.PhotoFile, evento.ImageMimeType);
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
+                }
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+        private Evento GetEventoById(int id)
+        {
+            return _context.Eventos.Include(b => b.BarId)
+                .SingleOrDefault(c => c.EventId == id);
+        }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("EventId,Nombre,Descripcion,PrecioEntrada,Dia,Hora,Capacidad,Direccion,BarId")] Evento evento)
+        //{
 
 
-    //    if (ModelState.IsValid)
-    //    {
-    //        _context.Add(evento);
-    //        await _context.SaveChangesAsync();
-    //        return RedirectToAction(nameof(Index));
-    //    }
-    //    return View(evento);
-    //}
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(evento);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(evento);
+        //}
 
 
-    // GET: Evento/Edit/5
-    public async Task<IActionResult> Edit(int? id)
+        // GET: Evento/Edit/5
+        public async Task<IActionResult> Edit(int? id)
     {
       if (id == null)
       {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,15 +13,17 @@ namespace tocatu.Controllers
 {
   public class BarController : Controller
   {
-    private readonly TocatuContext _context;
+        private readonly TocatuContext _context;
+        private IWebHostEnvironment _environment;
 
-    public BarController(TocatuContext context)
-    {
-      _context = context;
-    }
+        public BarController(TocatuContext context, IWebHostEnvironment enviroment)
+        {
+            _context = context;
+            _environment = enviroment;
+        }
 
-    // GET: Bar
-    public async Task<IActionResult> Index()
+        // GET: Bar
+        public async Task<IActionResult> Index()
     {
       return View();
     }
@@ -98,7 +101,7 @@ namespace tocatu.Controllers
         return NotFound();
       }
 
-      EventoController e = new EventoController(_context);
+      EventoController e = new EventoController(_context, _environment);
       e.ActualizarDatos(bar.Capacidad, bar.Direccion, id);
 
 
@@ -151,7 +154,7 @@ namespace tocatu.Controllers
     {
       var bar = await _context.Bar.FindAsync(id);
       //Llamamos a un metodo el cual borra los eventos asociados ya que sin bar no hay evento...
-      EventoController e = new EventoController(_context);
+      EventoController e = new EventoController(_context, _environment);
       e.BorrarEventosAsociados(id);
       _context.Bar.Remove(bar);
       await _context.SaveChangesAsync();

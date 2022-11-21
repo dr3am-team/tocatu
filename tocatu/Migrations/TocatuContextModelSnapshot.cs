@@ -36,6 +36,7 @@ namespace tocatu.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Descripcion")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Dia")
@@ -51,13 +52,24 @@ namespace tocatu.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Hora")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageMimeType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NombreBanda")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("PhotoFile")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<double>("PrecioEntrada")
                         .HasColumnType("float");
@@ -79,6 +91,7 @@ namespace tocatu.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Apellido")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Discriminator")
@@ -86,15 +99,19 @@ namespace tocatu.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Mail")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NombreUsuario")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");
@@ -109,6 +126,7 @@ namespace tocatu.Migrations
                     b.HasBaseType("tocatu.Models.Usuario");
 
                     b.Property<string>("Estilo")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("Banda");
@@ -122,6 +140,7 @@ namespace tocatu.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Direccion")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("Bar");

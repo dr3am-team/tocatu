@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,15 +13,17 @@ namespace tocatu.Controllers
 {
   public class BandaController : Controller
   {
-    private readonly TocatuContext _context;
+        private readonly TocatuContext _context;
+        private IWebHostEnvironment _environment;
 
-    public BandaController(TocatuContext context)
-    {
-      _context = context;
-    }
+        public BandaController(TocatuContext context, IWebHostEnvironment enviroment)
+        {
+            _context = context;
+            _environment = enviroment;
+        }
 
-    // GET: Banda
-    public async Task<IActionResult> Index()
+        // GET: Banda
+        public async Task<IActionResult> Index()
     {
       return View();
     }
@@ -95,7 +98,7 @@ namespace tocatu.Controllers
       {
         return NotFound();
       }
-      EventoController e = new EventoController(_context);
+      EventoController e = new EventoController(_context, _environment);
       e.ActualizarDatos(banda.Estilo, banda.Nombre, id);
       if (ModelState.IsValid)
       {
@@ -146,7 +149,7 @@ namespace tocatu.Controllers
       var banda = await _context.Bandas.FindAsync(id);
       //establecemos el valor de BarId del evento en null, ya que sino al borrar el bar se rompe la bd porque el evento esta vinculado al id de bar
       //falta hace que los datos de la banda en el evento vuelvan a estar vacios
-      EventoController e = new EventoController(_context);
+      EventoController e = new EventoController(_context, _environment);
       e.BorrarIdBanda(id);
       e.EstablecerDatosDeBandaVacios(id);
 

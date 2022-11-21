@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -29,6 +30,15 @@ namespace tocatu.Models
         public string Hora { get; set; }
         public int Capacidad { get; set; }
         public string Direccion { get; set; }
+        [NotMapped]
+        [Display(Name = "Foto del evento:")]
+        public IFormFile PhotoAvatar { get; set; }
+
+        public string ImageName { get; set; }
+
+        public byte[] PhotoFile { get; set; }
+
+        public string ImageMimeType { get; set; }
         public int? BarId { get; set; }
         public virtual Bar Bar { get; set; }
         public int? BandaId { get; set; }
