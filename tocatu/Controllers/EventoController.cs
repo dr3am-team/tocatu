@@ -269,24 +269,27 @@ namespace tocatu.Controllers
       ViewBag.Banda = new SelectList(Bandas, "UserId", "Nombre");
 
     }
-    public void ActualizarDatos(int capacidad, string direccion, int id)
-    {
-      //buscar al evento del id
-      var Evento = from evento in _context.Eventos
-                   where (evento.BarId == id)
-                   select evento;
-      foreach (Evento e in Evento)
-      {
-        e.Capacidad = capacidad;
-        e.Direccion = direccion;
+        public void ActualizarDatos(int capacidad, string direccion, int id)
+        {
+            //buscar al evento del id
+            var Evento = from evento in _context.Eventos
+                         where (evento.BarId == id)
+                         select evento;
+            //este if revisa si hay algun evento asociado al id de bar que llega por parametro
+            if (Evento.FirstOrDefault() != null ) { 
+            foreach (Evento e in Evento)
+            {
+                e.Capacidad = capacidad;
+                e.Direccion = direccion;
 
-      }
+            }
 
 
 
-      var Evento1 = Evento.FirstOrDefault();
-      Evento1.Capacidad = capacidad;
-      Evento1.Direccion = direccion;
+            var Evento1 = Evento.FirstOrDefault();
+            Evento1.Capacidad = capacidad;
+            Evento1.Direccion = direccion;
+        }
     }
     public void ActualizarDatos(string estilo, string nombre, int id)
     {
