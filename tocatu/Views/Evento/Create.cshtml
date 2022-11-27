@@ -53,15 +53,15 @@
                 <input asp-for="Hora" class="form-control" />
                 <span asp-validation-for="Hora" class="text-danger"></span>
             </div>
-           @* <div class="form-group">
-                <label asp-for="Capacidad" class="control-label"></label>
-                <input asp-for="Capacidad" class="form-control" />
-                <span asp-validation-for="Capacidad" class="text-danger"></span>
+            @* <div class="form-group">
+            <label asp-for="Capacidad" class="control-label"></label>
+            <input asp-for="Capacidad" class="form-control" />
+            <span asp-validation-for="Capacidad" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Direccion" class="control-label"></label>
-                <input asp-for="Direccion" class="form-control" />
-                <span asp-validation-for="Direccion" class="text-danger"></span>
+            <label asp-for="Direccion" class="control-label"></label>
+            <input asp-for="Direccion" class="form-control" />
+            <span asp-validation-for="Direccion" class="text-danger"></span>
             </div>*@
             @*<div class="form-group">
             <label asp-for="BandaId" class="control-label"></label>
@@ -69,14 +69,14 @@
             <span asp-validation-for="BandaId" class="text-danger"></span>
             </div>*@
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" id="btn-crear" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-primary" asp-action="Index">Volver</a>
 </div>
 
 @section Scripts {
