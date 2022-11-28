@@ -20,7 +20,8 @@
                     <time datetime="2022-10-31"><span><strong>Fecha: </strong>@Html.DisplayFor(modelItem => item.Fecha)</span> <br /> <span><strong>Hora: </strong>@Html.DisplayFor(modelItem => item.Hora)hs</span> </time>
                     <p class="card-text"><strong>Dirección: </strong>@Html.DisplayFor(modelItem => item.Direccion)</p>
                     <div class="btn-participar">
-                        <a href="@Url.Action("DisminuirCapacidad", "Evento", new { id = item.EventId })" id="btn-unir" class="btn btn-primary">¡Quiero participar!</a>
+                        @*<a href="@Url.Action("DisminuirCapacidad", "Evento", new { id = item.EventId })" id="btn-unir" class="btn btn-primary">¡Quiero participar!</a>*@
+                        <a href="#" id="btn-unir" class="btn btn-primary">¡Quiero participar!</a>
                     </div>
                 </div>
             </div>
