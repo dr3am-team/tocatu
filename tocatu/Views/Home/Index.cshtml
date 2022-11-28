@@ -13,17 +13,17 @@
         {
             <div class="card shadow" style="width: 18rem;">
 
-        <img class="card-img-top" alt="Imagen descriptiva" src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F380073589%2F216685717227%2F1%2Foriginal.20220816-152308?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C70%2C1080%2C540&s=14b966a45fdb6bdff871d4d44d6a1ccf" />
-        <div class="card-body">
-            <h4 class="text-justify mt-1">@Html.DisplayFor(modelItem => item.Descripcion)</h4>
-            <span><strong>Entrada: </strong>$@Html.DisplayFor(modelItem => item.PrecioEntrada)</span> <br>
-            <time datetime="2022-10-31"><span><strong>Fecha: </strong>@Html.DisplayFor(modelItem => item.Fecha)</span> <br /> <span><strong>Hora: </strong>@Html.DisplayFor(modelItem => item.Hora)hs</span> </time>
-            <p class="card-text"><strong>Dirección: </strong>@Html.DisplayFor(modelItem => item.Direccion)</p>
-            <div class="btn-participar">
-                    <a href="#" id="btn-unir" class="btn btn-primary">¡Quiero participar!</a>
+                <img class="card-img-top" alt="Imagen descriptiva" src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F380073589%2F216685717227%2F1%2Foriginal.20220816-152308?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C70%2C1080%2C540&s=14b966a45fdb6bdff871d4d44d6a1ccf" />
+                <div class="card-body">
+                    <h4 class="text-justify mt-1">@Html.DisplayFor(modelItem => item.Descripcion)</h4>
+                    <span><strong>Entrada: </strong>$@Html.DisplayFor(modelItem => item.PrecioEntrada)</span> <br>
+                    <time datetime="2022-10-31"><span><strong>Fecha: </strong>@Html.DisplayFor(modelItem => item.Fecha)</span> <br /> <span><strong>Hora: </strong>@Html.DisplayFor(modelItem => item.Hora)hs</span> </time>
+                    <p class="card-text"><strong>Dirección: </strong>@Html.DisplayFor(modelItem => item.Direccion)</p>
+                    <div class="btn-participar">
+                        <a href="@Url.Action("DisminuirCapacidad", "Evento", new { id = item.EventId })" id="btn-unir" class="btn btn-primary">¡Quiero participar!</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
         }
     </div>
 </div>
