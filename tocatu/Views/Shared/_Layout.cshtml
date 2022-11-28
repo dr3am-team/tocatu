@@ -7,39 +7,29 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="icon" href="@Url.Content("~/img/tocatuLogo.png")" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=The+Nautigal:wght@700&display=swap" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
     <header>
-        <nav class=" navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class=" navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TOCATU</a>
+                <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">TOCATU</a>
                 <div class="">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Bar" asp-action="Index">Bar</a>
+                            <a class="nav-link text-white mx-3" asp-area="" asp-controller="Bar" asp-action="Index"><i class="fa-solid fa-wine-glass"></i>BARES</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Banda" asp-action="Index">Banda</a>
+                            <a class="nav-link text-white mx-3" asp-area="" asp-controller="Banda" asp-action="Index"><i class="fa-solid fa-drum"></i>BANDAS</a>
                         </li>
                         <li class="nav-item">
-
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Evento" asp-action="Index">Evento</a>
-                       @* </li>
-
-
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Banda" asp-action="Create">Crear una banda</a>
+                            <a class="nav-link text-white mx-3" asp-area="" asp-controller="Evento" asp-action="Index"><i class="fa-solid fa-calendar"></i>EVENTOS</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Banda" asp-action="Index">Ver a las bandas existentes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Bar" asp-action="Create">Crear un bar</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Bar" asp-action="Index">Ver los bares existentes</a>
-                        </li>*@
-                        
-
                     </ul>
                 </div>
             </div>
@@ -52,12 +42,12 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - Tocatu -
+        <div class="container text-center">
+            &copy; 2022 - Tocatu
+            <span class="mx-3">-</span>
            <i class="fa-brands fa-facebook m-xl-2"></i>
            <i class="fa-brands fa-instagram m-xl-2"></i>
            <i class="fa-brands fa-twitter m-xl-2"></i>
-
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

@@ -1,10 +1,23 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+body {
+    background: linear-gradient(snow, 96.5%, grey);
+}
+
+footer {
+    background-color: snow;
+}
+
+
 a.navbar-brand {
     white-space: normal;
     text-align: center;
     word-break: break-all;
+    font-family: 'Dancing Script', cursive;
+    font-size: xx-large;
+    transform: rotate(-4deg);
+    
 }
 
 /* Provide sufficient contrast against white background */
@@ -82,7 +95,7 @@ body {
 }
 
     .idx_button-container .idx_button {
-        padding: 20px;
+        padding: 40px;
         width: 300px;
         box-shadow: 1px 1px 10px #ccc;
     }
@@ -93,3 +106,29 @@ body {
             cursor: pointer;
             text-decoration: none;
         }
+
+
+header ul a {
+    font-size: large;
+        font-weight: 500;
+}
+
+.fa-solid {
+    padding: 12px;
+}
+
+.btn-participar {
+    text-align: center;
+}
+
+h1 {
+    margin: 1.5rem;
+}
+
+div.idx_button {
+    align-self: center;
+}
+
+div.idx_button a:has(h5) {
+    white-space: nowrap;
+}
