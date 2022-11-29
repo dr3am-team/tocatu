@@ -4,9 +4,6 @@
 // Write your JavaScript code.
 
 
-
-console.log("hola mundo");
-
 $("#btn-unir").click(function () {
     Swal.fire({
         position: 'top-end',
