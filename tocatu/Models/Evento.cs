@@ -33,14 +33,14 @@ namespace tocatu.Models
         public string Direccion { get; set; }
 
         [Column(TypeName = "nvarchar(50)")]
+        [DisplayName("Titulo de imagen")]
         public string Title { get; set; }
 
         [Column(TypeName = "nvarchar(100)")]
-        [DisplayName("Image Name")]
         public string ImageName { get; set; }
 
         [NotMapped]
-        [DisplayName("Upload File")]
+        [DisplayName("Subir imagen")]
         public IFormFile ImageFile { get; set; }
         public int? BarId { get; set; }
         public virtual Bar Bar { get; set; }
