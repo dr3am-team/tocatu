@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace tocatu.Models
@@ -20,6 +21,7 @@ namespace tocatu.Models
         [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$")]
         public string Mail { get; set; }
         [Required(ErrorMessage = "Debe ingresar una contraseña")]
+        [DisplayName("Contraseña")]
         public string Password { get; set; }
     }
 }
