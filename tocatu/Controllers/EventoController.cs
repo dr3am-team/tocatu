@@ -369,5 +369,43 @@ namespace tocatu.Controllers
 
             }
         }
+        public async Task<IActionResult> DisminuirCapacidad(int id)
+        {
+            var Evento = from evento in _context.Eventos
+                         where (evento.EventId == id)
+                         select evento;
+
+            var evento1 = (Evento)Evento.FirstOrDefault();
+
+            if (evento1.Capacidad > 0)
+            {
+                evento1.Capacidad--;
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(evento1);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!EventoExists(evento1.EventId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+               
+                return RedirectToAction("Index", "Home");
+            }
+            return RedirectToAction("Index", "Home");
+
+
+        }
+
     }
 }
