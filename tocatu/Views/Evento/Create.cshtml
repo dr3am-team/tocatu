@@ -11,12 +11,8 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-
-
-
             <div class="form-group">
                 <label asp-for="BarId" class="control-label">Seleccione el nombre de un bar</label>
                 <select asp-for="BarId" asp-items="ViewBag.Bar">
@@ -24,9 +20,6 @@
                 </select>
                 <span asp-validation-for="BarId" class="text-danger"></span>
             </div>
-
-
-
             <div class="form-group">
                 <label asp-for="Nombre" class="control-label"></label>
                 <input asp-for="Nombre" class="form-control" />
@@ -53,21 +46,16 @@
                 <input asp-for="Hora" class="form-control" />
                 <span asp-validation-for="Hora" class="text-danger"></span>
             </div>
-            @* <div class="form-group">
-            <label asp-for="Capacidad" class="control-label"></label>
-            <input asp-for="Capacidad" class="form-control" />
-            <span asp-validation-for="Capacidad" class="text-danger"></span>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-            <label asp-for="Direccion" class="control-label"></label>
-            <input asp-for="Direccion" class="form-control" />
-            <span asp-validation-for="Direccion" class="text-danger"></span>
-            </div>*@
-            @*<div class="form-group">
-            <label asp-for="BandaId" class="control-label"></label>
-            <input asp-for="BandaId" class="form-control" />
-            <span asp-validation-for="BandaId" class="text-danger"></span>
-            </div>*@
+                <label asp-for="ImageFile" class="control-label"></label>
+                <input asp-for="ImageFile" accept="image/*" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Create" id="btn-crear" class="btn btn-primary" />
             </div>
