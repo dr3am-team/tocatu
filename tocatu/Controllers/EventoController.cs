@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using tocatu.Context;
@@ -13,10 +16,12 @@ namespace tocatu.Controllers
   public class EventoController : Controller
   {
     private readonly TocatuContext _context;
+    private readonly IWebHostEnvironment _hostEnvironment;
 
-    public EventoController(TocatuContext context)
+    public EventoController(TocatuContext context, IWebHostEnvironment hostEnvironment)
     {
       _context = context;
+      this._hostEnvironment = hostEnvironment;
     }
 
     public async Task<IActionResult> Index()
@@ -61,14 +66,22 @@ namespace tocatu.Controllers
     // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("EventId,Nombre,Descripcion,PrecioEntrada,Dia,Hora, BarId")] Evento evento)
+    public async Task<IActionResult> Create([Bind("EventId,Nombre,Descripcion,PrecioEntrada,Dia,Hora,BarId,Title,ImageFile")] Evento evento)
     {
 
       var fecha = evento.Dia.Split("-");
       DateTime _fecha = new DateTime(int.Parse(fecha[0]), int.Parse(fecha[1]), int.Parse(fecha[2]));
       evento.Fecha = _fecha;
 
-
+      string wwwRootPath = _hostEnvironment.WebRootPath;
+      string fileName = Path.GetFileNameWithoutExtension(evento.ImageFile.FileName);
+      string extension = Path.GetExtension(evento.ImageFile.FileName);
+      evento.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+      string path = Path.Combine(wwwRootPath + "/images/", fileName);
+      using (var fileStream = new FileStream(path, FileMode.Create))
+      {
+        await evento.ImageFile.CopyToAsync(fileStream);
+      }
 
 
       var Bar = from bar in _context.Usuarios
@@ -84,6 +97,7 @@ namespace tocatu.Controllers
       {
         _context.Add(evento);
         await _context.SaveChangesAsync();
+        await Task.Delay(2000);
         return RedirectToAction(nameof(Index));
       }
       return View(evento);
@@ -228,10 +242,18 @@ namespace tocatu.Controllers
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
       var evento = await _context.Eventos.FindAsync(id);
+
+      //borrar de wwwroot/images
+      var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "images", evento.ImageName);
+      if (System.IO.File.Exists(imagePath))
+        System.IO.File.Delete(imagePath);
+
       _context.Eventos.Remove(evento);
       await _context.SaveChangesAsync();
       return RedirectToAction(nameof(Index));
     }
+
+
 
     private bool EventoExists(int id)
     {
@@ -269,27 +291,28 @@ namespace tocatu.Controllers
       ViewBag.Banda = new SelectList(Bandas, "UserId", "Nombre");
 
     }
-        public void ActualizarDatos(int capacidad, string direccion, int id)
+    public void ActualizarDatos(int capacidad, string direccion, int id)
+    {
+      //buscar al evento del id
+      var Evento = from evento in _context.Eventos
+                   where (evento.BarId == id)
+                   select evento;
+      //este if revisa si hay algun evento asociado al id de bar que llega por parametro
+      if (Evento.FirstOrDefault() != null)
+      {
+        foreach (Evento e in Evento)
         {
-            //buscar al evento del id
-            var Evento = from evento in _context.Eventos
-                         where (evento.BarId == id)
-                         select evento;
-            //este if revisa si hay algun evento asociado al id de bar que llega por parametro
-            if (Evento.FirstOrDefault() != null ) { 
-            foreach (Evento e in Evento)
-            {
-                e.Capacidad = capacidad;
-                e.Direccion = direccion;
+          e.Capacidad = capacidad;
+          e.Direccion = direccion;
 
-            }
-
-
-
-            var Evento1 = Evento.FirstOrDefault();
-            Evento1.Capacidad = capacidad;
-            Evento1.Direccion = direccion;
         }
+
+
+
+        var Evento1 = Evento.FirstOrDefault();
+        Evento1.Capacidad = capacidad;
+        Evento1.Direccion = direccion;
+      }
     }
     public void ActualizarDatos(string estilo, string nombre, int id)
     {
@@ -347,5 +370,43 @@ namespace tocatu.Controllers
 
       }
     }
+    public async Task<IActionResult> DisminuirCapacidad(int id)
+    {
+      var Evento = from evento in _context.Eventos
+                   where (evento.EventId == id)
+                   select evento;
+
+      var evento1 = (Evento)Evento.FirstOrDefault();
+
+      if (evento1.Capacidad > 0)
+      {
+        evento1.Capacidad--;
+      }
+      if (ModelState.IsValid)
+      {
+        try
+        {
+          _context.Update(evento1);
+          await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+          if (!EventoExists(evento1.EventId))
+          {
+            return NotFound();
+          }
+          else
+          {
+            throw;
+          }
+        }
+
+        return RedirectToAction("Index", "Home");
+      }
+      return RedirectToAction("Index", "Home");
+
+
+    }
+
   }
 }

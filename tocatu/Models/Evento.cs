@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -22,6 +24,7 @@ namespace tocatu.Models
         [Required(ErrorMessage = "Debe ingresar un precio")]
         public double PrecioEntrada { get; set; }
         public string Dia { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Fecha { get; set; }
 
         [Range(1, 24, ErrorMessage = "Error en la hora. Ingrese una hora valida")]
@@ -29,6 +32,17 @@ namespace tocatu.Models
         public string Hora { get; set; }
         public int Capacidad { get; set; }
         public string Direccion { get; set; }
+
+        [Column(TypeName = "nvarchar(50)")]
+        [DisplayName("Titulo de imagen")]
+        public string Title { get; set; }
+
+        [Column(TypeName = "nvarchar(100)")]
+        public string ImageName { get; set; }
+
+        [NotMapped]
+        [DisplayName("Subir imagen")]
+        public IFormFile ImageFile { get; set; }
         public int? BarId { get; set; }
         public virtual Bar Bar { get; set; }
         public int? BandaId { get; set; }
