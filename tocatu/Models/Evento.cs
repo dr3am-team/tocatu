@@ -24,6 +24,7 @@ namespace tocatu.Models
         [Required(ErrorMessage = "Debe ingresar un precio")]
         public double PrecioEntrada { get; set; }
         public string Dia { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Fecha { get; set; }
 
         [Range(1, 24, ErrorMessage = "Error en la hora. Ingrese una hora valida")]
