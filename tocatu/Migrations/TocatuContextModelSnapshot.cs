@@ -55,6 +55,9 @@ namespace tocatu.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImageName")
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -65,13 +68,16 @@ namespace tocatu.Migrations
                     b.Property<double>("PrecioEntrada")
                         .HasColumnType("float");
 
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(50)");
+
                     b.HasKey("EventId");
 
                     b.HasIndex("BandaId");
 
                     b.HasIndex("BarId");
 
-                    b.ToTable("Eventos");
+                    b.ToTable("Evento");
                 });
 
             modelBuilder.Entity("tocatu.Models.Usuario", b =>

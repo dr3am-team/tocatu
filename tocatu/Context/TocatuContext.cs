@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace tocatu.Context
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Banda> Bandas { get; set; }
         public DbSet<tocatu.Models.Bar> Bar { get; set; }
+        public DbSet<Evento> Images { get; set; }
 
 
     }
