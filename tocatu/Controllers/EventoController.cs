@@ -205,6 +205,7 @@ namespace tocatu.Controllers
             var Evento3 = (Evento)Evento2.FirstOrDefault();
             Evento3.NombreBanda = banda1.Nombre;
             Evento3.EstiloBanda = banda1.Estilo;
+            Evento3.BandaId = banda1.UserId;
             if (ModelState.IsValid)
             {
                 try
@@ -363,8 +364,10 @@ namespace tocatu.Controllers
             foreach (Evento e in Evento)
             {
                 e.BandaId = null;
+ 
 
             }
+            
         }
 
         public void EstablecerDatosDeBandaVacios(int id)
@@ -377,8 +380,11 @@ namespace tocatu.Controllers
             {
                 e.NombreBanda = "";
                 e.EstiloBanda = "";
+            
 
             }
+            
+
         }
         public async Task<IActionResult> DisminuirCapacidad(int id)
         {
