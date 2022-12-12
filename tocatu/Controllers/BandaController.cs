@@ -152,7 +152,6 @@ namespace tocatu.Controllers
             EventoController e = new EventoController(_context, _hostEnvironment);
             e.BorrarIdBanda(id);
             e.EstablecerDatosDeBandaVacios(id);
-
             _context.Bandas.Remove(banda);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
