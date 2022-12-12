@@ -203,9 +203,17 @@ namespace tocatu.Controllers
                           where (ev.EventId == id)
                           select ev;
             var Evento3 = (Evento)Evento2.FirstOrDefault();
-            Evento3.NombreBanda = banda1.Nombre;
-            Evento3.EstiloBanda = banda1.Estilo;
-            Evento3.BandaId = banda1.UserId;
+            //si la banda no existe nos devuelve a la vista de eventos
+            if (banda1 != null)
+            {
+                Evento3.NombreBanda = banda1.Nombre;
+                Evento3.EstiloBanda = banda1.Estilo;
+                Evento3.BandaId = banda1.UserId;
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (ModelState.IsValid)
             {
                 try
@@ -224,7 +232,7 @@ namespace tocatu.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             return View(evento);
         }
