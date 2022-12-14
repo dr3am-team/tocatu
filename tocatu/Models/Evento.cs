@@ -20,7 +20,7 @@ namespace tocatu.Models
         public string Nombre { get; set; }
         [Required(ErrorMessage = "Debe ingresar una descripcion del evento.")]
         public string Descripcion { get; set; }
-        [Range(1, int.MaxValue, ErrorMessage = "Error en el precio. Debe ingresar un precio mayor a 0.")]
+        [Range(1, double.MaxValue, ErrorMessage = "Error en el precio. Debe ingresar un precio mayor a 0.")]
         [Required(ErrorMessage = "Debe ingresar un precio.")]
         public double PrecioEntrada { get; set; }
         [Required(ErrorMessage = "Debe ingresar una fecha.")]
