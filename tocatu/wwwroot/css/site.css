@@ -132,3 +132,9 @@ div.idx_button {
 div.idx_button a:has(h5) {
     white-space: nowrap;
 }
+
+
+.home-index-image {
+    height: 250px;
+    object-fit: cover;
+}

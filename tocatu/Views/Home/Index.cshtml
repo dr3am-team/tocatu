@@ -12,9 +12,9 @@
     <div class="d-flex flex-lg-wrap">
         @foreach (var item in Model)
         {
-            <div class="card shadow" style="width: 18rem;">
+            <div class="card mr-5 shadow" style="width: 18rem;">
 
-                <img decoding="async" src="@("~/images/"+item.ImageName)" asp-append-version="true" />
+                <img class="home-index-image" decoding="async" src="@("~/images/"+item.ImageName)" asp-append-version="true" />
                 <div class="card-body">
                     <h4 class="text-justify mt-1">@Html.DisplayFor(modelItem => item.Descripcion)</h4>
                     <span><strong>Entrada: </strong>$@Html.DisplayFor(modelItem => item.PrecioEntrada)</span> <br>
