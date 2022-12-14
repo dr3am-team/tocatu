@@ -73,23 +73,37 @@ namespace tocatu.Controllers
             DateTime _fecha = new DateTime(int.Parse(fecha[0]), int.Parse(fecha[1]), int.Parse(fecha[2]));
             evento.Fecha = _fecha;
 
-            string wwwRootPath = _hostEnvironment.WebRootPath;
-            string fileName = Path.GetFileNameWithoutExtension(evento.ImageFile.FileName);
-            string extension = Path.GetExtension(evento.ImageFile.FileName);
-            evento.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-            string path = Path.Combine(wwwRootPath + "/images/", fileName);
-            using (var fileStream = new FileStream(path, FileMode.Create))
+            if (evento.ImageFile != null)
             {
-                await evento.ImageFile.CopyToAsync(fileStream);
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(evento.ImageFile.FileName);
+                string extension = Path.GetExtension(evento.ImageFile.FileName);
+                evento.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                string path = Path.Combine(wwwRootPath + "/images/", fileName);
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    await evento.ImageFile.CopyToAsync(fileStream);
+                }
             }
-
+            else
+            {
+                return RedirectToAction("Create", "Evento");
+            }
 
             var Bar = from bar in _context.Usuarios
                       where (bar.UserId == evento.BarId)
                       select bar;
             var bar1 = (Bar)Bar.FirstOrDefault();
-            evento.Capacidad = bar1.Capacidad;
-            evento.Direccion = bar1.Direccion;
+            if (bar1 != null)
+            {
+                evento.Capacidad = bar1.Capacidad;
+                evento.Direccion = bar1.Direccion;
+            }
+            else
+            {
+                return RedirectToAction("Create", "Evento");
+            }
+            
 
 
 
