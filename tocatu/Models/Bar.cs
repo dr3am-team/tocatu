@@ -5,11 +5,12 @@ namespace tocatu.Models
 {
     public class Bar : Usuario
     {
-        [Required(ErrorMessage = "Debe ingresar una direccion")]
+        [Required(ErrorMessage = "Debe ingresar una direccion.")]
         public string Direccion { get; set; }
         //Obligatorio + msg error
 
-        [Range(1, 5000, ErrorMessage = "Error de capacidad, ingrese una capacidad entre 1 y 5000")]
+        [Range(1, 5000, ErrorMessage = "Error de capacidad, ingrese una capacidad entre 1 y 5000.")]
+        [Required(ErrorMessage = "Error de capacidad, ingrese una capacidad entre 1 y 5000.")]
         public int Capacidad { get; set; }
         //Obligatorio + msg error + rangos > 0 
         public virtual ICollection<Evento> Eventos { get; set; }

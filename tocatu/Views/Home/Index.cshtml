@@ -14,15 +14,36 @@
         {
             <div class="card shadow" style="width: 18rem;">
 
-                <img decoding="async" src="@("~/images/"+item.ImageName)" asp-append-version="true"/>
+                <img decoding="async" src="@("~/images/"+item.ImageName)" asp-append-version="true" />
                 <div class="card-body">
                     <h4 class="text-justify mt-1">@Html.DisplayFor(modelItem => item.Descripcion)</h4>
                     <span><strong>Entrada: </strong>$@Html.DisplayFor(modelItem => item.PrecioEntrada)</span> <br>
                     <time datetime="2022-10-31"><span><strong>Fecha: </strong>@Html.DisplayFor(modelItem => item.Fecha)</span> <br /> <span><strong>Hora: </strong>@Html.DisplayFor(modelItem => item.Hora)hs</span> </time>
                     <p class="card-text"><strong>Dirección: </strong>@Html.DisplayFor(modelItem => item.Direccion)</p>
-                     <div class="btn-participar">
-                        <a href="@Url.Action("DisminuirCapacidad", "Evento", new { id = item.EventId })" id="btn-unir" class="btn btn-primary">¡Quiero participar!</a>
-                    </div>
+
+
+                    @if (item.Capacidad == 0)
+                    {
+                        <h4 class="text-center mt-1">LLENO</h4>
+                    }
+
+                    else @if (item.BandaId != null)
+                    {
+                        <p class="card-text"><strong>Banda: </strong>@Html.DisplayFor(modelItem => item.NombreBanda)</p>
+                        <p class="card-text"><strong>Lugares disponibles: </strong>@Html.DisplayFor(modelItem => item.Capacidad)</p>
+                        <div class="btn-participar">
+                            <a href="@Url.Action("DisminuirCapacidad", "Evento", new { id = item.EventId })" id="btn-unir" class="btn btn-primary">¡Quiero participar!</a>
+                        </div>
+                    }
+
+                    else @if (item.BandaId == null)
+                    {
+
+                        <div class="btn-participar">
+                            <a href="@Url.Action("Edit", "Evento", new { id = item.EventId })" id="btn-participar" class="btn btn-primary">Agregar una banda</a>
+                        </div>
+                    }
+
                 </div>
             </div>
         }
