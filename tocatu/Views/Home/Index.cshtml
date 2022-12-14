@@ -27,7 +27,7 @@
                         <h4 class="text-center mt-1">LLENO</h4>
                     }
 
-                    else @if (item.NombreBanda != null)
+                    else @if (item.BandaId != null)
                     {
                         <p class="card-text"><strong>Banda: </strong>@Html.DisplayFor(modelItem => item.NombreBanda)</p>
                         <p class="card-text"><strong>Lugares disponibles: </strong>@Html.DisplayFor(modelItem => item.Capacidad)</p>
@@ -36,7 +36,7 @@
                         </div>
                     }
 
-                    else
+                    else @if (item.BandaId == null)
                     {
 
                         <div class="btn-participar">
