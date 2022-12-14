@@ -396,6 +396,8 @@ namespace tocatu.Controllers
         }
         public async Task<IActionResult> DisminuirCapacidad(int id)
         {
+            await Task.Delay(2000);
+
             var Evento = from evento in _context.Eventos
                          where (evento.EventId == id)
                          select evento;
